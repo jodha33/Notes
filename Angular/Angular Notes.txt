@@ -1,0 +1,168 @@
+Angular Notes:
+	
+	Archetecture:
+		component: application data + event data handler(user action)
+					every screen will have componenet
+					properties
+		templates: design html logic
+					can access all the properties from component
+		data binding: mediates betweeen component and template
+
+		modules: group of component
+					import or export from other compoenent.
+		services: business logic and rest api calls
+
+
+	Angular Packages: 
+		1. @angular/core:  predefined decorators, classes, interfaces and modules 
+							eg. @component @ngModule @directive
+
+		2. @angular/common: userful in realtime appliation
+							eg. ngif, ngSwitch, ngClass, ngFor
+
+		3. @angular/compiler:  compiles 
+
+		4. @angular/platform-browser-dynamic
+
+		5. @angular/platform-browser
+
+		6. @angular/forms: predefined classes to create and execute form
+
+		7. @angular/router: for routing
+
+		8. @angular/animations:
+
+		9. @angular/cli: need to be installed on developer
+						eg. ng new, ng serve, ng build, ng test etc
+
+		10. rxjs: neccessary predfined classes for creating observables
+
+		11. zone.js: provides necessary per-defined classes for executing change detection processwhile executing angular app
+
+
+	Angular App Folder Structure:
+
+		e2e			: e2e test cases
+		src  		: source code
+			app
+				app.component.scss  		: contain css style of app component
+				app.component.html			: contain template of app component
+				app.componenet.spec.ts 		: unit test cases using jasmine
+				app.component.ts 			: contains app component
+				app.module.ts 				: staring module
+				app-routing.module.ts		: contains routing
+
+			assets			:contains staic files eg. images
+			favicon.ico		: browser icon
+			index.html		: default page
+			main.ts 		: define startup module
+			pollyfill.ts 	: addional script need to load and run app
+			style.scss  	: contain global css styles of entire app
+		angular.json 	: angular cli config
+		package.json    :npm packages
+		tsconfig.json   : typescript compiler configration setttings
+
+
+	Installation and Execution:
+
+		npm install @angular/cli -g
+		ng new TaskManager --style=scss  --routing --skip-install
+		npm install
+
+		To run: 
+		ng serve --open --port:5200
+
+	Bootstrap Addition to Angular
+
+		npm install jquery --save
+		npm install popper.js --save
+		npm install bootstrap --save
+		
+		for font
+		npm install font-awesome --save
+
+		update angular.json in style and scripts section
+
+	Component:
+		ng g component Dashboard
+
+
+
+	Routing: 
+		Single Page Application
+		URL to a component
+		@angular/router
+
+
+	Data Binding
+				Interpolation Binding---{{}}
+				Property Binding []
+				Event Binding ()
+				Two Way Binding [()]
+
+
+	Style Handling & ngClass
+			[style.property]=value
+			[style.property]="(condition)?trueValue:falseValue"
+
+			[ngClass]=value
+			[ngClass]="(condition)?trueValue:falseValue"
+
+	*ngIf *ngElse
+
+	ng-template
+		 *ngIf="NOOfTeamMembers>20 then firstTemplate else secondTemplate"
+
+	Pipes:
+		Pipe is class that recive a value, execute function transfor and return a value
+			{{property | uppercase}}
+			{{property | lowsercase}}
+			{{property | slice: startIndex : endIndex}}
+			{{property | number: .2}}
+			{{property | currency: "USD"}}
+			{{property | percent}}  .6- to 60%
+			{{property | json}}  Javascript to json
+			{{property | date}} format check online
+
+
+Modules:   ng g component Myprofile
+		Collection of component, imported in a porject or created.
+			Angular Modules are NgModules-- is class that is decorated with @NgModule, contains Metadata(Module Member,)
+				@NgModule({
+						declartion[], --- part of current module
+						exports[],    --- parts which are public and can be access by other module
+						imports[],    --- parts which are imported
+						providers[]   --- list of services that can be used by the component in current module
+			})
+
+Angular Services:
+		Seperation of Business logic and data access logic
+
+		1. Create Service Class.
+		2. Make ready the Service for Dependency Injection
+		3. Provide the Service Globally/Locally
+					i. add providedIn: "root" option in @Injectable() decorator
+					ii. add providers: [service] in app Module metadata
+					iii. add in any other app module metadata
+					iv. ad in any other component metadata
+		4. Inject the service into actual component
+					i. Add @Inject(service) private refVariable: Service in any component constructor
+					ii. Add private refVariable: Service , other thing is optional
+
+		Command:
+			ng g service dashboard
+
+RxJS- Observables and Observers
+		-- pattern of message passing from publisher to subscriber
+
+		Real Time Usage:
+			while using reponse from ajax
+			while doing large task
+
+		Observalbe is an object -- User Input/Http Request
+		Observer-- 
+			1. Handle Data
+			2. Handle Error
+			3. Handle Completion
+
+AJAX- Asynchronos Javascript and XML. Background Request to server without refreshing and reloading

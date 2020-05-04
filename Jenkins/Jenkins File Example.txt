@@ -1,0 +1,97 @@
+def failed_email_to = 'jodha.singh@ge.com'
+def success_email_to = 'jodha.singh@ge.com'
+
+def emailNotification(String email) {
+            emailext to: email,
+                from: 'jenkins@ims.ge.com',
+                subject: "API Test Execution Report:  Build on Branch ${currentBuild.displayName}",
+                body: '${JELLY_SCRIPT,template="static-analysis"}',
+                attachLog: true, 
+                attachmentsPattern: '**/reports/report.html',
+                mimeType: 'text/html'
+}
+
+pipeline {
+    agent {
+        docker {
+            image 'geims/java'
+            label 'dind'
+            //args '-v /root/.m2:/root/.m2'
+        }
+	  }
+	  environment {
+        COMPLIANCEENABLED = true
+    }
+    
+    parameters {
+        string(defaultValue: 'master', description: 'Branch', name: 'branch')
+        choice(
+                name: 'env',
+                choices: "pre-prod\ndev\nprod\nqa",
+                description: 'Test Environment'
+        )
+    }
+    options {
+        timestamps()
+        skipDefaultCheckout()
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '1', artifactNumToKeepStr: '1', daysToKeepStr: '30', numToKeepStr: '30'))
+    }
+    triggers {
+           // cron('11 22 * * 1-5')
+    }
+
+    stages {
+
+       stage('Checkout') {
+            steps {
+                script {
+                        env.CurrentStage = 'Checkout'
+                        echo "${env.CurrentStage}"
+			                  currentBuild.displayName = '#' + env.BUILD_NUMBER + ':' + params.branch
+                }
+                checkout scm
+		        echo sh(returnStdout: true, script: 'env')
+            }
+        }
+        stage('Tool Installation') {
+            steps {
+                script {
+                    env.CurrentStage = 'Installation'
+                    echo "${env.CurrentStage}"
+                       // sh '''  echo "PATH = ${PATH}"
+                        //         echo "M2_HOME = ${M2_HOME}" '''
+                        sh 'mvn install'
+                }
+            }
+        } 
+        stage('Run Test') {
+                steps {
+                    script {
+                            
+                            env.CurrentStage = 'Run Tests'
+                            echo "${env.CurrentStage}"
+                            echo "Running  Tests"
+                            sh "mvn clean test -Denv=${params.env}"
+                    }
+                }
+           
+        }
+    }
+    post {
+        
+        success {
+            script {
+	                   println("********* ${env.CurrentStage} ${currentBuild.currentResult} ************")
+		               emailNotification(success_email_to)
+	           }
+	      }
+
+        failure {     
+            script {
+	                   println("********* ${env.CurrentStage} ${currentBuild.currentResult} ************")
+		               emailNotification(failed_email_to)
+                  }
+
+        }
+    }
+}

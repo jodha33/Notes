@@ -1,0 +1,50 @@
+
+//Robot Framework
+
+Command to install: 
+
+						Install Python
+						intall pip using below link: https://www.roytuts.com/installing-pip-with-embeddable-zip-python-in-windows/
+						pip install robotframework
+						For Selenium: 	pip install robotframework-seleniumlibrary
+						For API: 		pip install robotframeworl-requests
+
+
+	To Search Project Libraries:
+		Got to : pypi.org
+				 Search robotframework
+				 Also avaiable in robotframework official site
+
+
+	Archetecuture:
+						Script (.robot)
+						Workflow (.robot)
+						Built-in Librarires
+								- OperationSystem
+								- Dialogs
+								- String
+								- XML
+								- Process
+								- Collections
+								- DateTime
+								- Screenshot
+						External Librarires
+								- Selenium2
+								- Appium
+								- FTP
+								- SSH
+								- Database
+								- Diff
+								- Swing
+								- Archive
+
+	Documentation for Keywords: https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html
+
+
+	Section of Script File:
+			- Settings -- Documentation, libarary's, Resource, Suite Setup/ Suite Teardown, Test Setup/ Test Teardown, Test Timeout X
+			- Variables 
+			- Test Cases -- [Documenation], [Tags] , Timeout X
+			- Keywords (optional)
+
+	3 spaces between values

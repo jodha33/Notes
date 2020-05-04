@@ -1,0 +1,256 @@
+JAVA Notes:
+
+	Object: It is an user defined data type, it can be collection of data and methods or function to perfrom on that data.
+				Instantiation:
+				Customer 	c 		= new 			Customer();
+				Ref type	var		  keyword		Object Type
+
+				Object is created when we use new keyword.
+				Garbage Collector will destory the objects which does not have reference.
+
+				Default Value of primitive data type:
+					short  - 0
+					int     -0
+					long    -0
+					double-- 0.0
+					float-- 0.0
+					char - /u000-- nul character
+					boolean- false
+					byte    -0
+					Object= null
+
+				Objects are stored in Heap
+				Reference Variable is stored in Stack.
+
+				Every class Extends java.lang.Object contains two method 1.) to String  2.) equals  3.) Hashcode
+
+	Class: Blueprint/Design of an Object
+		   A File can have only one public class at a time.	
+		   Stored in Heap.
+
+	Primitives: 8 primitive data type-- int byte short long bool char float double
+						- It does not have behaviour/methods.
+						- Dont have new keyword to allocate memory.
+
+	Void:
+		legal (though uncommon) to just use the return statement.  
+		public void doSomething() {
+		    return;
+		}
+
+	Static Variable/Class Variable: Its value common across all objects. Used using Class Name. It is created when loaded in JVM.
+	Static Method/Class Method: Static method can only access static variable.
+	Static Block: Can  call/define static variable/static method only. Can be created any number of time. Used in top down order.
+
+	Garbage Collection: JRE determines which of the object no more refrerenced/used and destry the objects.
+							System.gc(); -- Suggestion to JRE to try to check reference of objects and destroy.
+							Remove the object from heap.
+
+	Package: java.lang auto imported package--String, System -- No need to import explicitly
+
+	Java Syntax:
+			Switch:
+					We can put int,char,byte,short etc
+
+					Java7: introduced string as well in swtich(String)
+
+			Operator:
+						y = 0;
+						y++;  //y =1
+						y=y++;
+						print y  //y=0
+
+  STATIC IMPORT:
+            We can use static import to import the static members from interface. 
+
+	String: Sequence of chars;String is immutable(means String cannot be changed once created and references on the same reference)
+								Special Memeory for String literal in heap called String constant pool.
+			Two  ways:  1. String s ="Str";
+								It looks in string pool, only one object is created on the heap that many refereces point to.
+						
+						2. String s=new String("Str");
+								Even if text is already present it will alocate memory in heap.
+
+						https://javaconceptoftheday.com/when-to-use-equals-hashcode-on-strings/
+
+			Mutable String Class in java.lang:
+				String Buffer: Thread Safe
+
+				String Builder: Not Thread Safe
+
+	Pass By Value:  Primitive Data Type: Only Copy is used while passing to another method. You can return the value from 													the method in order to retain value;
+					Object: If we pass object in parameter, it will work on Heap Object reference and value will be retained after operations
+
+	Access Specifier:
+						1. private: only in the class.
+						2. public: can be used anywhere.
+						3. default: it can be used if it is in same package;
+						4. protected: inherited classes can use
+
+	INHERITENCE:  
+					Over Riding:  Child Reference varible cannot have parent obj however vice versa can have.
+									Final Keyword before method will now allow overriding.
+									Final Keyword before variable will not allow again asignment of value;
+									Final Keyword before class will not allow inheritence. Eg. String Class in java.lang
+
+					Person p=new Employee();  // p obj can acess all the methods written in Person class.
+
+	POLYMORPHISM:
+					Any Referency Variable can store Object Type its Specify or Sub Type.
+
+					OBJECT TYPE CASTING:
+						Employee e = (Employee) p;
+
+	ABSTRACTION:
+					Abstract Method will always be under abstract class.
+					Abstract Class cannot be instantiated.
+					Use of Abstract Class is under polymorphism.
+
+
+					Interface:
+						public static final variable
+						abstarct method: by default they are public
+
+						Default method  in inteface in java 8:
+
+						Setup a contract and define by classes by implemening it.
+						Override the methods in implenting classes.
+
+
+					Abstract class either implement or not implement in interface, if it is not implementing it, contract is passed on to child classes who inherit it.
+
+					Interface can extend interfaces
+
+Array:        1. Var args    int void method(int... abc)  -- it is an array as parameter in function siimilar to int[] abc.
+              2. Arrays class in java.util have mulitple methods such as sort(),binarysearch()
+              3. length is used to find lenght of the array
+              4. Conversion of String array is possible into list type as it is object type, but for primitive type there is not boxing, you have to do it explicitly using loops;
+              4. Arrays class has method Arrays.asList(arr);
+
+Date & Time:    1. Immutable object
+                1. LocalDateTime dt= LocalDateTime.now();
+                2. Period pd=Period.of();   
+                3. DateTimeFormatter
+
+Diff in Array & ArrayList:
+            Array: Not Resizable            Stores Primtive or Objects    
+            ArrayList: Dynamically sized    Stores only Objects   
+
+Collection in JAVA: 
+        Collection Interface
+          commond method: add(), remove(), size(), contains(), clear(), search(), fill(), shuffle(), reverse(), binarySearch()
+        Map Interface
+          1. ArrayList:  Dynamicaly size is created.  size() method is used.  we can pass length also. 
+                          method:  
+                          
+          2. LinkedList:  -Slower Reterival than arraylist -- addition is faster than arraylist
+          3. Set  -- HashSet,TreeSet,LinkedSet
+
+          4. Map: HasMap,TreeMap
+
+Limitation of Collection:   
+      Wrapper Class: Object classes corresponding to Primitive data type to have behaviour on the values.
+                      Integer.valueof(i);
+      Need to Cast Hetrogenious data
+
+Generics & Autoboxing:
+  Generic: allow you to specify the intended data type to be stored in a reference, in this case into the collection.
+            List<Integer> prime= new ArrayList<Integer>();
+            E- Type of element in the collection
+
+            Java 7 : Diamond Operator
+                      List<Integer> prime= new ArrayList<>();
+  Autoboxing: 
+                 Integer y= 5;  erier in java 4  it was: Integer y= Integer.valueof(5);     
+
+Comparable: It is an inteface, A comparable object is capable of comparing itself with another object.
+Comparator: It is an interface, compare(obj1, obj2) will accept two object to sort.
+
+      Diff b/w Comparable & Comparator
+            Comparable is meant for objects with natural ordering which means the object itself must know how it is to be ordered. For example Roll Numbers of students. Whereas, Comparator interface sorting is done through a separate class.
+            Logically, Comparable interface compares “this” reference with the object specified and Comparator in Java compares two different class objects provided.
+            If any class implements Comparable interface in Java then collection of that object either List or Array can be sorted automatically by using Collections.sort() or Arrays.sort() method and objects will be sorted based on there natural order defined by CompareTo method.  
+
+
+Exception:
+            Throwable: Object is created, when disruption happen in execution 
+                        We can catch this object using Exception handling. Two Classes Extend Throwable
+                        1. Exception is the exceptional situation that can be handled by the code of the program. NullPointer, IndexOutOfBounds.
+                        2. Error : “Error” is a critical condition that cannot be handled by the code of the program. OutOfMemory,
+                        StackOverFlow
+                    Methods: getCause(), getMessage(), getStackTrace(), printStackTrace();
+            StrackTrace is shown in console, whenever exception is thrown.
+
+            Checked: checked exceptions denote error scenarios which are outside the immediate control of the program.                                                          FileNotFoundException, SQLException, MalFormedURLException
+            Unchecked Excpetion(Runtime Exception- java.lang.RunTime) They will come into life/occur into your program, once any                                                buggy code is executed. : NullPointerException, IndexOutOfBoundsExcpetion.
+
+            Java 7 : catch(IndexOutOfBounds | NullPointerException e) -- or operator can be used to catch two exception
+                      try(Connection con=drivermanager) -- java will close the connection automaticlly autoclose interface is there.
+JAVA 8 Features:
+        Functional Interface       --Done
+        Lambda expressions         --Done
+        DEFAULT AND STATIC METHOD inside Interface    - Done
+        Java.util PREDICATE, Function, Consumer, Supplier  --Done
+        Double Colon Operator ::  -- Method Reference, Constructor Reference --Done
+        Streams --Done
+        Collection API
+        Time API
+        Concurrency, IO
+        JavaScript Engine (NaShorn)
+
+  Lambda(->):  -- To Bring Benefits of Functionaly Programming Lanugauge
+        Marker Interface: Has no abstract method
+        Functional Interface: Has exactly only one abstract method(there can be static/default method)
+
+        Rules:
+        1. If One Argument:    Interface obj= anyVar-> anyVar+10;
+        2. If No Argument:     Interface obj= ()-> x+10;
+        3. IF Two Argument:    Interface obj=(x,y)->x+y;
+
+        Examples: Runnable, Comparator (Collections.sort(list,(x,y)->(x<y)?-1:(x>y)?1:0);)
+
+
+  Functional Interface IN JAVA:  Java.util.function package
+              Predicate(Conditional Check)  - One Parameter,boolean return type ; public abstract boolean test(T t);   Methods: or,negate,and
+              Function   - One Parameter, Any Return Type                       ; public abstract T apply(T t); Methods: andThen(F)
+              Consumer   - One Parameter, No Return Type                        ;public abstract void accept(T t); andThen()
+              Supplier   - No Parameter, Any Return Type                        ;public abstract T get();
+
+  	Default Method in Interface: 
+            If two interface has same default method and both are imlemented by same class, then class need to override the default method and inside the method need to call method name with iterface name.
+            EG: return newInterface.super.getSometing();
+
+          Interfaces can have default methods with implementation in Java 8 on later.
+          Interfaces can have static methods as well, similar to static methods in classes.
+          The default methods were introduced to provide backward compatibility so that existing interfaces can use the lambda expressions without implementing the methods in the implementation class.
+
+          Example: Stream is an inteface. stream() is default method in that interface.
+
+  Method & Constructor Reference(::):  
+          Method Reference:
+              -Alternate to Lambda 
+              -We Can use any existing method and refer it to Functional Interface Variable using ::, brings reusablity 
+              -Class Reference   Predicate<String> obj=ClassName::printSomething; Method should be static
+              -Object Reference  Predicate<String> obj=Object::printSomething; Object should be created before of that class
+              -When Implemention is avaialbe use Method Reference otherwise use Lambda
+
+          Construtor Reference:
+              -Method returns an object, use Constructor Reference
+
+
+  Streams(Collection):
+              -Process Object form the collection, perform bulk operation on objects.  
+        Methods:
+            filter(Predicate <T>):  To Filter some element inside a collection, size may reduce.
+            map(Function <T,R>): To perform some operation to all the objects of the collection. size will be same.
+
+            collect(): Collects the element from stream and add to specified collection.
+            allM
+
+            sorted()- default order;   sorted(Comparator c) for customised sorting order
+
+            of- group of values we can pass          Stream<Integer> str=Stream.of(arr)
+            count()
+            min(Comparator).get()
+            max(Comparator).get()
+            limit(int)

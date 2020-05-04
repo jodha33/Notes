@@ -1,0 +1,53 @@
+Software Testing Notes:
+
+V Model
+-----------------
+Req Analysis        -   System Testing
+High Level Design   -   Integration Testing
+Low Level Design    -   Unit Testing
+                  Coding
+
+
+Software Development Testing Lifecycle - STLC
+----------------------------------------
+1. Req Analysis   -  Req Tracibility Matrix, Test Automation Feasibility
+2. Test Planning  -  Test Plan & Test Strategy Doc , Effort Estimations
+3. Test Development - Test Cases & Test Data
+4. Test Env Setup   - Smoke Test, Env Setup
+5. Test Execution   - Test Execution and Defect log
+6. Test Cycle Closure - Test Closure Report
+
+
+Unit Testing Techniques
+--------------------------
+1. Statement Coverage
+2. Decision Coverage
+3. Branch Coverage
+4. Condition Coverage
+5. Finite State Machine Coverage
+
+System Testing :  Complete Integrated Product Testing, E2E Testing
+--------------
+Black Box :  External Working of the product, user perspective 
+White Box :  Internal Code Testing
+
+
+Sanity Vs Smoke
+-----------------------
+Smoke :  To Test Critical Functionality are working Fine after a new builds.
+Sanity:  To Test new Functionality/Bugs are fixed in the build
+
+Regression Testing
+----------
+To Test Existing Feature after new build/defect fixes.
+
+Non Functional Testing
+--------------
+Performance Testing
+Usability Testing
+Load Testing
+Security Testing
+Stress Testing
+Reliability Testing
+Availibility Testing
+

@@ -57,5 +57,22 @@ Function:
 				            decrementIt() {temp--}
 				        }
 				    }
+				   
+	Asynhronus:
+	It allows mulitple code to run at the same time.
+
+	Callback: Its a function which is passed as argument in another function call. Those function under which function is passed as Argument are called High Order function.
+
+	Promises: 
+				Pending
+				Resolve
+				Reject
+		"use strict" in the top of page
+
+		let performUpload = function (status: string): Promise<status:string>{
+				return new Promise((resolve)=>{
+					console.log(`Status: ${status}`);
+				})
+		}
 
 	

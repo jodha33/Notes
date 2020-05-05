@@ -1,0 +1,19 @@
+Data type in Javascript:
+	Number, String, Boolean, Null, Undefined, Object
+
+Variable 
+	var: var is function scoped
+	let: let is block scoped 
+	const: Its value cannot be changed
+
+	Scope: local variable will overide the global variable scope inside block;
+
+Array: 
+	var house=[];
+	var house=new Array();
+			-push();  --  insert item
+			-pop();	  --  remove last item
+			-shift(); -- remove first item
+			-unshift() -- add item at beginning
+			-splice(startIndex,endIndex,item)  --
+			-slice(index,counter)

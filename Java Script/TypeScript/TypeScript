@@ -1,0 +1,61 @@
+Types:
+	var
+	let
+	const
+
+String Interpolation
+			`This is String ${msg}`
+
+DataType:
+	number -- let abc: number =10;
+	String -- let str:string = "This is String";
+	Array  -- let arr:number[]
+	Tuple  -- let tup: [number, string];
+	Enum   -- enum enu{ EMPLOYEE,MANAGER,CEO }; let type:enu=enu.EMPLOYEE;
+	Any    -- let var: any[];
+	Void   -- function myfun():void{}
+
+Type:
+	type PlayArray = Array<String>;
+	let players: PlayArray=["Kohlui","Dhoni","Bhajji"];
+
+	Union
+	type PlayArray = Array<String|number>;
+
+=== will check for type as well in Javascript, typescript will now allow checking two value of different type using this operatior.
+
+Loop:
+	additional loop: for of -- value
+					 for in -- index
+
+Function: 
+	function name(parameter:type, parameter?:string_optional): returnType{	}
+	Optional value should be in the very end of method argument list.
+	Default argument can be placed anywhere.
+
+	 Parameters:
+		function players(name:string, ...skills:string[])
+		any number of values can be passed, but not as array as it will automatically create array internally.
+
+	Hoisting: Function Expression should be defined before calling them.  Functional declartion will work fine.
+
+	Function Expression declartion using lambda
+    		var myFun:(i:string)=>string;
+
+
+    Immedialty Invoked Function:
+    (function(parmeter:type){ //do Something})("param1"); 
+
+    Closures: Data+Bahaviour
+    		- Similar to the concept of Classes and objects.
+    		- return can have functions which has access to outer funciton variables.
+
+				 function closureExample(temp:number=0){
+				        return {
+				            printNumber() {console.log(temp)},
+				            incrementIt() {temp++},
+				            decrementIt() {temp--}
+				        }
+				    }
+
+	

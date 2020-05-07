@@ -1,0 +1,65 @@
+Docker
+	  is an image of OS
+	  conatains  Operation System
+	  			 Software
+	  			 Dependecies
+	  			 Environment Variable
+
+	  Container: 
+	  			image of the OS Type: Docker Hub, Kitematics
+
+
+	 Commands:
+
+	 			Docker create
+	 			Docker pull
+	 			Docker push
+	 			Docker ps
+	 			Docker pa -a(Show all container)
+	 			Docker rm(container)/ rmi(image)
+	 			Docker stop
+
+	Linking docker Run: To Create link between two or more container to share/access resources
+		 		Docker run -name <LocalContainerName> --link <LocalContainerName>:ActualCotnainerName
+
+	Docker Compose:
+			For Defining and running mulit-container Docker application
+			With compose file, with single command you start all the services from the configuration.
+			Its an Yaml(.yml) file
+
+			docker-compose --help
+
+			docker-compose up  -- to start all the serivices
+			docker-compose stop
+
+	Selenium Grid:
+			Selenium Hub: 
+								1. Nodes
+								2. Nodes
+
+								Req:
+									1. Docker for Windows.
+									2. Latest Selenium hub Container
+									3. Lates Selenium node for browser chrome/firefox
+
+									If you want to see UI, take the image which suppor VNC, go for VNC server to connect to that image.
+						Yaml file: 
+
+						seleniumhub:
+								image: selenium/hub
+								ports:
+									-4444:4444
+
+						firefoxnode:
+								image: name
+								port: 
+									- 4577
+								links: 
+									- seleniumhub:hub
+
+						chromenode:
+								image: name
+								port: 
+									- 4578
+								links: 
+									- seleniumhub:hub

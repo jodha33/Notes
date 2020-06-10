@@ -1,0 +1,25 @@
+Javascript is Synchronous; Single Thread Language: One Operation at a Time
+
+To Make it Asynchrous: 
+			Callback()
+			Promises()
+			Async() Await()
+
+To Test Angular Applications:
+
+Locators: 
+			
+		Find an element with a certain ng-model.
+		// Note that at the moment, this is only supported for AngularJS apps.
+		by.model('name')
+
+		<span>{{person.name}}</span>
+		<span ng-bind="person.email"></span>
+			by.binding('bindingname')
+
+		by.repeater("")
+			Find elements inside an ng-repeat.  using row and column 
+			ng-repeat
+
+
+		element. all();

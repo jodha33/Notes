@@ -1,0 +1,60 @@
+TestNg Notes:
+
+	@BeforeSuite:
+	@Before Test:
+	@Before Class:
+	@Before Method:
+	@Test
+	@AfterMethod
+	@AfterClass
+	@AfterTest
+	@AfterSuite
+
+
+
+Data Provider:
+
+		@DataProvider(name="")
+		public object[][] doSomething()  -- 2 Dimension Object of Array
+
+		@Test(dataProvider="")
+		public void test(String var,String var2)
+
+@Test:
+	priority
+	timout
+
+
+Listener:
+		IAnnotationTransformer (doc, javadoc)
+		IAnnotationTransformer2 (doc, javadoc)
+		IHookable (doc, javadoc)
+		IInvokedMethodListener (doc, javadoc)
+		IMethodInterceptor (doc, javadoc)
+		IReporter (doc, javadoc)
+		ISuiteListener (doc, javadoc)
+		ITestListener (doc, javadoc)
+
+testng.xml
+<suite name="My suite" parallel="methods/tests/classes/instances" thread-count="5">     -- Parallel support
+  <test name="Nopackage" >
+    <classes>
+       <class name="NoPackageTest" />
+    </classes>
+  </test>
+ 
+  <test name="Regression1">
+    <classes>
+      <class name="test.sample.ParameterSample"/>
+      <class name="test.sample.ParameterTest"/>
+    </classes>
+  </test>
+</suite>
+
+
+To Run Failed Test Cases:
+testng-failed.xml 
+
+
+Dry Run:
+You can enable dry run mode for TestNG by passing the JVM argument -Dtestng.mode.dryrun=true

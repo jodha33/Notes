@@ -1,0 +1,34 @@
+
+
+Webdriver:
+
+Locator: ID, Name, CSS, XPath, LinkText, 
+
+To Open a Browser:
+		driver.get(URL);
+		driver.navigate.to(URL);
+
+Implicityly Wait: To wait for each element before through no such element exception in the web page:
+			driver.manager().timout().implicitlyWait(Timout,TimoutUnit.second);
+
+
+Explicitly Wait: To explicitly Wait for an element based on some condition.
+		WebdriverWait wait=new WebDriverWait(driverRefernce,TimeoutINSeconds);
+		wait.unti(ExpectedConditions.visibilityOFElement(by.id("dfd")));
+
+
+Frames:
+		To Pass the Frame ID/Name/Webelement:
+		driver.switchTo().frame( var );
+
+		.parentFrame();
+		.defaultContent();	
+
+Alert:
+		driver.switchTo().alert().dismiss();
+
+PopUp/Window:
+		driver.getWindowHandle();  -- current Window Handle:
+		driver.getWindowHandles()  -- set of all the opend window handle
+
+		driver.switchTo().window(handle);

@@ -1,0 +1,62 @@
+HTML
+
+
+
+
+CSS:
+
+Link:
+	<style="">
+	<style></style>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	Padding:
+	Border :
+	Margin: 
+
+	Inline element doesnt have height and width
+	Box element has height and widht: id class 
+
+
+	Typo graphy Guidelines;
+
+	font-size: 15-22 px
+	Headline: 60px  font weight: reduce
+	sub headline: 32 px
+	line space: 120 to 150 of the font size
+
+	 45 to 90 character per line.
+
+	 font: Sansserif
+
+	 Colors;
+	 Flat UI colors;
+	 Base Colors;
+
+	 Use Overlays to show text on images.  blur image
+	 floor fade
+
+
+	 Media Queries is used to displays the site for different devices
+
+	 JQuery: Javascript framework by google.
+	 		do some operation using different button and icons.
+	 		Magnific Popup:
+	 		tooltipster
+	 		maplace.js
+	 		OnePage scroll
+
+	 		$(document).ready(function(){
+	 				$('h1').click(function(){
+	 					$(this).css('background-color':'red');
+	 				})
+
+	 		})
+
+	 Animate.Css
+
+	 ionicons.
+
+	 To reduce the image font-size
+	 optimize.zilla

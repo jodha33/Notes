@@ -1,0 +1,131 @@
+Steps:
+
+1. First Create Server on Amazon AWS
+		EC2:   Linux.
+	We will get PEM file.
+
+	MobaXterm: pass in that PEM file.
+				using SSH.
+				connect to Server.
+
+			Linux:
+					yum remove java-1.7.0.*
+
+					set Home Path
+						cd ~ to move home
+						vi .bash_profile
+
+						JAVA_HOME=
+						PATH
+
+						Save
+
+					echo $JAVA_HOME
+
+2. Install Jenkins:
+			run jenkins repo in Red Hat
+
+			yum install jenkins
+			service jenkins status
+			service jenkins start
+
+			URL:8080
+
+2. Install maven:
+			RUn project
+
+3. Install TomCat Server:
+			1. Create new server in AWS
+			2. install tomcat by downloading it wget
+			3. Extract and in bin folder run start.sh
+			4. Check in the port: Wheather it is running or not
+			5. find context.xml
+			6. vi context.xml
+					comment in local ip address in tomcat
+					<!--   -->
+			7. restrat the server
+			8. managerapp
+				update different rolles
+			9. conf/tomcat-user.xml   
+					update user with different roles
+
+4. Deploy to container plugin - install plugin in jenkins server
+
+5. Post Build deploye War file.
+			add credential as per previous
+			tomcat url
+			copy war file to target
+6. We Can use Poll SCM whenever there is change in code the build will happen
+
+7. Creater new AMAZON Server to host Docker: 
+
+			Docker Container Setup:
+						install docker in AMAZON AWS
+
+						docker ps
+						service docker status
+						service docker start
+
+							Docker File ---> Docker Imager ---> Docker container
+							Predefined images avaialbe to user docker Hub
+							install tomcat docker image
+
+							run docker container:
+							 docker run -d --name tomcat-container -p 8080:8080 tomcat:latest
+
+				Verify Docker is runnint 
+						URL:8080
+
+						If Getting Error Login to Docker Container:
+						 docker exec -it tomcat-container /bin/bash
+						 ls
+						 IF webapps is empty you will be getting error
+						 copy webapps dist to webapps
+
+
+8. Ingerating Docker with Jenkins:
+
+		1. Plugin in jenkins : publishOverSSH -- install it
+		2. Add user in Docker server:
+				useradd dockeradmin
+				passwd dockeradmin
+
+				cat /etc/group
+
+				add user to group
+				usermod -ag docker dockeradmin
+				id dockeradmin
+
+				check ip address of docker admin
+
+				enable password authentication 
+
+					vi /etc/ssh/sshd_config
+
+					PasswordAuthentication:Yes
+
+				service sshd reload
+		3. Manage Jenkins 
+				Configure System
+						public over sssh
+								server: ip address
+								name: dockerhost
+								hostname:dockeradmin
+								password: 
+						Save and Apply
+
+		4. Create a new jOb in jenkins to Copy Artifact:
+					post build actions: 
+											Send Artifact Over SSH
+
+
+
+
+		5. Docker File to move file from System to Container:
+		
+
+
+			
+
+
+

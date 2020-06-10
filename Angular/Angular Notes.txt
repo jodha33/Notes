@@ -89,16 +89,16 @@ Angular Notes:
 
 
 	Routing: 
-		Single Page Application
+		Single Page Application  <router-outlet> <router-outlet>
 		URL to a component
 		@angular/router
 
 
 	Data Binding
-				Interpolation Binding---{{}}
-				Property Binding []
-				Event Binding ()
-				Two Way Binding [()]
+				Interpolation Binding---{{}}   -- String interpolation for variables and objects in component
+				Property Binding []   --used to define property  [name]="valueInComponenet"
+  				Event Binding ()     -- used to call an event in component
+				Two Way Binding [()]  
 
 
 	Style Handling & ngClass
@@ -108,10 +108,14 @@ Angular Notes:
 			[ngClass]=value
 			[ngClass]="(condition)?trueValue:falseValue"
 
-	*ngIf *ngElse
+	Directives:
+			*ngIf *ngElse
 
-	ng-template
-		 *ngIf="NOOfTeamMembers>20 then firstTemplate else secondTemplate"
+			ng-template
+				 *ngIf="NOOfTeamMembers>20 then firstTemplate else secondTemplate"
+
+			ngModel : To Dinamycally assign value from the input to the variable
+			ngClass  : to change css dynamically
 
 	Pipes:
 		Pipe is class that recive a value, execute function transfor and return a value
@@ -139,7 +143,7 @@ Angular Services:
 		Seperation of Business logic and data access logic
 
 		1. Create Service Class.
-		2. Make ready the Service for Dependency Injection
+		2. Make ready the Service for Dependency Injection	 @Injectable() decorator above service class
 		3. Provide the Service Globally/Locally
 					i. add providedIn: "root" option in @Injectable() decorator
 					ii. add providers: [service] in app Module metadata
@@ -152,8 +156,14 @@ Angular Services:
 		Command:
 			ng g service dashboard
 
-RxJS- Observables and Observers
+Build: ng build -- for building the file
+
+RxJS(Reactive Extension)- Observables and Observers -- for large set of data as asyncrhonos data
 		-- pattern of message passing from publisher to subscriber
+						Observerable is created
+						Obserber subscribes to obverable
+						Observable can pass messages(notification) to the Observer
+
 
 		Real Time Usage:
 			while using reponse from ajax
@@ -166,3 +176,8 @@ RxJS- Observables and Observers
 			3. Handle Completion
 
 AJAX- Asynchronos Javascript and XML. Background Request to server without refreshing and reloading
+
+Fake Server: json-server --watch data.json
+				
+				1. Create Service
+				2. Create Model Class: ng g class Data

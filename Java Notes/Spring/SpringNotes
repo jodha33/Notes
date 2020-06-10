@@ -1,0 +1,24 @@
+
+1. Inversion Of Control: 
+
+					Object Factory ---> config  --> Object is created
+					Spring Container will create and Manage the Objects.
+					Inject Object Dependencies.
+
+					Configuration:
+						1. XML
+						2. Java Annotation
+						3. Java Source Code(modern)
+						
+			1. XML
+					Add a Config file in src
+					Create Object of ClassPathXmlApplicationContext and pass config file
+					load the bean using bean name and class type.
+						Coach c=context.getBean("myCoach",Coach.class);
+
+			Dependency Injection: Helper Objects
+				MyApp-----Spring[Object Factory]---config------Any Object
+
+					1. Construction Injection
+							
+					2. Setter Injection

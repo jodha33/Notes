@@ -116,6 +116,14 @@ Angular Notes:
 
 			ngModel : To Dinamycally assign value from the input to the variable
 			ngClass  : to change css dynamically
+			ngStyle	:
+
+
+		Customer Directive: 
+		@Directive 
+
+		Host Listener is used to perform some event based Operation.
+		Host Binding is used to access any property value. 
 
 	Pipes:
 		Pipe is class that recive a value, execute function transfor and return a value
@@ -181,3 +189,51 @@ Fake Server: json-server --watch data.json
 				
 				1. Create Service
 				2. Create Model Class: ng g class Data
+
+View Encapsulation:
+			Css is used By Default on Component level not global level. We can change it by using:
+				encapsulation: ViewEncapsulation.None/Emulated/Native
+
+Local Reference Vairable in HTML pages:  <input #name>    doSomething(name.value)
+
+View child:
+			@ViewChild(Component) var: Component;
+			@ViewChildren(Component) var: QueryList<JokeComponent>;
+			@ContentChild()
+			@ContentChildren()
+
+<ng-content> to display project html 
+
+LifeCycle:
+			ngOnChanges: When Bound Input property Changes
+			ngOnInit   : When Component is initialized after constructor
+			ngDoCheck  : Called during every change detection run
+			ngAfterContentInit	: Called after content(ng-content) has been projected into view
+			ngAfterContentChecked: Called after every time project content has been checked
+			ngAfterViewInit: After Component View has been initialized.
+			ngAfterViewChecked: Called after time the view(and child views) has been checked.
+			ngOnDestory			: After component is droped.
+
+
+Form
+		Template Driven - Angular infers the Form Object from the Dom
+		Reactive		- Form is created programmatically and synchronized with the DOM
+
+		Template Driven Form:
+			To Get Access You need to have Reference Vairable with # in form tag
+
+			Two Way to Access the form
+			1. ViewChild
+			2. (ngSubmit)="onSubmit(f)"  #f="ngForm"
+
+			Two ways to update the form value from component
+				setValue()-- pass same object of form
+				this.form.form.patchValue({userData:{ 
+					username:suggestedName
+				}})
+
+
+
+
+
+

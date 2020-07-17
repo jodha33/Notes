@@ -1,0 +1,28 @@
+
+
+Uniform Resource constraint:
+		HTTP Method
+		Http status Code
+		Representation Formats
+
+
+HTTP Method:
+		GET:	To retrieve existing resource
+		POST:   To create a new resource
+		PUT:    To Update existing resource
+		PATCH:  Modifies part of an existing resource
+		DELETE: To delete a resource
+
+HTTP Status Code:
+		1xx - Informational   100 continue
+		2xx - Success		  200 OK   201 Create   204 No Content
+		3xx - Redirection	  307 Temporry Redirect
+		4xx - Client Error	  404 Not Found
+		5xx - Server 		  500 Internal Server
+
+Response:
+			1. Content-Type
+			2. HTTP status code=415
+			3. Documented supported formats
+
+			P@ssW0rd

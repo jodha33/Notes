@@ -1,0 +1,89 @@
+Database Testing
+
+		
+		Schema:
+		Data Mapping:
+		Business Rules
+
+		Stored Procedures, FUnctions, Triggers, Schemas
+		Constraint, Indexes
+		
+
+		Database : Organized collection of databases.
+		DBMS: collection of programs which allows user to organize, restore and retrive info from the db.
+
+
+		Relationship in Database:
+				1-1
+				1-Many
+				Many-Many
+
+		Normalization: Process of removing redundant data
+							Normal forms 
+
+		SQL:
+				DDL - Create, Alter, Drop, Truncate
+				DML  - Insert, Update, Delete
+				DCL  - Commit Rollback SavePoint
+
+
+		Record: Collection of values of a specific entity
+		Field:  A Area within record that is reserved for specific data
+		Table: Colleciton of Record of specific type
+
+		View is virtual Table
+
+		Cursor is a temporary work area that stores the data, as well as the result set, occurred after manipulation of data retrieved. A cursor can hold only one row at a time.
+
+		Locks:
+				Shared
+				Exclusive
+
+		Index:
+				Clustered index alters the table and re-order the way in which the records are stored in the table. Data retrieval is made faster by using the clustered index.
+
+				A Non-clustered index does alter the records that are stored in the table but creates a completely different object within the table
+
+		Trigger:
+				A set of commands that automatically get executed when an event like Before Insert, After Insert, On Update, On Delete of row occurs in a table is called as Database trigger.
+				
+
+
+		Joins
+				INNER JOIN/SIMPLE JOIN   : Common between two tables
+											SELECT table1.column1,table1.column2,table2.column1,....
+											FROM table1 
+											INNER JOIN table2
+											ON table1.matching_column = table2.matching_column;
+
+				LEFT/Left Outer JOIN   : everything from left table and common from both the table
+											SELECT Student.NAME,StudentCourse.COURSE_ID 
+											FROM Student
+											LEFT JOIN StudentCourse 
+											ON StudentCourse.ROLL_NO = Student.ROLL_NO;
+
+				RIGHT/ Right Outer JOIN  : Everything from right table and common from both the table
+
+											SELECT table1.column1,table1.column2,table2.column1,....
+											FROM table1 
+											RIGHT JOIN table2
+											ON table1.matching_column = table2.matching_column;		
+										
+				FULL JOIN   :  Everthing from both the tables
+
+											SELECT table1.column1,table1.column2,table2.column1,....
+											FROM table1 
+											FULL JOIN table2
+											ON table1.matching_column = table2.matching_column;
+
+				CARTESIAN JOIN/CROSS JOIN : There is a join for each row of one table to every row of another table
+
+											SELECT table1.column1 , table1.column2, table2.column1...
+											FROM table1
+											CROSS JOIN table2;
+
+				SELF JOIN:  it is a join between two copies of the same table on some condition,  each row of the table is joined with itself and all other rows depending on some conditions
+
+											SELECT a.coulmn1 , b.column2
+											FROM table_name a, table_name b
+											WHERE some_condition;

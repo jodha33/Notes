@@ -30,7 +30,112 @@ Docker
 			docker-compose --help
 
 			docker-compose up  -- to start all the serivices
+	
 			docker-compose stop
+
+Interactive Shell
+	-it
+
+
+Volumes in Docker:
+docker container run -v E:\HostedVolume:/usr/data -it ubuntu
+--------------------------------------------------------------------------------------------
+
+Docker Commands:
+
+	docker run <image> <command>
+		- To Run a docker image with some command
+		- can be used with intractive (-it) to start with any command.
+
+		run = create + start
+
+	docker create <image>
+		- To create the container, returns conatiner id
+
+	docker start <containerId>
+		- To run the container, -a for output of the console from the container.
+
+	docker images
+		- To see list of images stored locally
+
+	docker ps
+		- To see list of containers up and running.
+
+	docker ps --all
+		- To see all the containers ever created in system.
+
+	docker system prune
+			Delete all the Containers/Images in current system
+
+	docker stop <container-id>
+		- SIGTERM signal, shutdown by giving some time to the process, defaut 10 second then kill command automatically is exectued.
+
+	docker kill <container-id>
+		- SIGKILL signal, Immediatly Kill the container
+
+	docker exec -it <container-id> <command>
+		- Execute additional command in already running container
+		- i- interactive(Input+Ouput+Error) t- formmating
+
+	docker image rm -f <imageName>
+		- To remove the images from the system. -f for forcefully remove
+
+--------------------------------------------------------------------------------------------------------
+
+Docker Custom Images:
+
+Docker File -> Docker Client  -> Docker Server  -> Uable Image
+
+Steps:
+	1. Base Image
+	2. Add Dependency
+	3. Run startup Command
+
+
+	Docker File:
+			FROM <image name>
+			RUN <command>
+			CMD <command>
+
+		Note: Order of Operation written in Docker file is cached whenever you add new commands to setup tools. better to not change the order of existing image to uitilise cached image funcationality.
+
+	Docker build .
+		- Build an Image with the Dockerfile provided in the same directory
+
+	Tagging an Image:
+		Docker build -t <DockerID>/<ProjectName:Version> .
+		Example:
+				docker build -t jodha33/testimage:latest .
+
+	Container To Image Creation:
+		docker commit -c 'CMD["<command>"]' conatinerID
+
+
+	PORT Mapping Inside Container:
+		docker run -p <HostPort> : <ContainerPORT> <imagename>
+		Eg:  docker create -p 5000:5000 <imageName>
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	Selenium Grid:
 			Selenium Hub: 

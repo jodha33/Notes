@@ -8,6 +8,11 @@ To Make it Asynchrous:
 To Test Angular Applications:
 
 Locators: 
+
+		CSS Locators:
+			https://devhints.io/css
+
+			
 			
 		Find an element with a certain ng-model.
 		// Note that at the moment, this is only supported for AngularJS apps.

@@ -1,0 +1,16 @@
+Fundamental: 
+	Multiple Internal Database in Single Mongo Instances.
+		|
+		|---Multiple Collection: (CRUD)
+					|- Create
+					|- Read
+					|- Update
+					|- Destroy
+
+		Mongoose-- JavaScript package Used for connecting with Node Server
+		Mocha- To Test the connection
+
+
+
+		Model
+		|----Schema

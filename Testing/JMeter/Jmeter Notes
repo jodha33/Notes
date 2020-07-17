@@ -1,0 +1,24 @@
+Jmeter Notes:
+
+ThreadGroup: Basically is IP Address
+		HttpRequest:
+
+		Attach Listeners:
+				View Result in Table/Tree/Summary
+
+
+
+Result Table:
+
+View Result Table:
+	Latency: is difference in time when request was sent and time when response has started to be recieved.
+
+	Response Time:
+		Difference between when request was sent and reponse has been recieved fully
+
+	Response Time= Latency + Processing Time
+
+	ThroghputTime: No of Request processed by the server within a second.
+
+
+

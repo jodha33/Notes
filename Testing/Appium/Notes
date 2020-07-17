@@ -1,0 +1,71 @@
+Appium:
+
+	Common Platform for Testing Android and IOS and Firefox IOS
+	Native, Hybrid, Mobile Web Apps
+	Supports Web Driver API
+	Open Source Automation Framework
+	Mulit Language support
+
+Archetecture:
+	Client Server Architecture
+
+	Commands  -> Appium Server(JSON Object Format)
+				 JSON Wire Protocol
+
+
+	Android UI Automator
+	Apple Framework
+
+	Desired Capabilities: Declare what app you need to invoke
+
+
+Installation:
+	Install Node.js
+	Java
+	Android Sdk
+	install npm install appium
+	download applim client jars
+	create project
+
+	Iphone:
+	Xcode - IDE
+	IOS Simulator version in Xcode
+	Install Java
+	Install Eclipse
+	Download Appium Server/Jars
+
+
+Steps to run:
+	0. Appium Server is started / Emulator is Opened
+	1. Desired Capabilities
+	2. Open Emulator
+	3. Apk
+	4. Connection to server
+
+
+	Locators:
+	Xpath, id, Classname/tagname, AndroidUiautomator
+
+
+	xpath: //tagName[@attribute='value']
+
+	id -- resource-id
+	Classname-- class
+
+	findElementByXpath
+	findElementsByClassName
+	findElementById
+	findElementByAndroidUIAutomator("attribute(\"value\")")
+	findElementsByAndroidUiAutomator("new UiSelector().clickable(true)")
+
+	 AndroidDriver<AndroidElement>  driver;
+	 File appDir = new File("src");
+     File app = new File(appDir, "ApiDemos-debug.apk");
+     DesiredCapabilities capabilities = new DesiredCapabilities();
+     capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Rahulemulator");
+     capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+    driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+
+
+	UI Automator Viewer
+	SDK tools bin

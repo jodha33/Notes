@@ -1,0 +1,82 @@
+Item  		Object  Input  Output Description
+Keyword		Object   value   value
+
+WebUI class
+
+DesiredCapability: Project -> Setting-> DesiredCapabilities
+	load-extension=file
+	disable-extension=file
+	start-maximized
+
+	CustomBrowser
+
+
+
+Browser:
+		Open Browser
+		Maximize Browser
+		Close Browser
+
+		Delay 6    WebUI.delay(2)
+
+  
+Handling Multiple Browser Window
+		Swtich to Window Index  Number    WebUI.switchToWindowIndex(2);
+		Switch to Window Title  Text
+		Switch to Window Url    URL
+		Close Window Index
+		Close Window Title
+		Close Window Url 
+
+Handling Frame:
+		Switch to Frame
+		Switch to Default Content
+
+
+Textbox:
+		Set Text
+		SEND KEYS   WebUI.sendKeys(findViewByObject(objcid),"sdfsdf");
+
+Button:
+		Click  Object   WebUI.click(findViewByObject(object));
+
+Checkbox:
+		Un-check  Object   WebUI.check(obj)
+		Check  TestObject  WebUI.uncheck(obj)
+
+DropDown:
+		Select Option By Index  5 
+		Select Option By Value
+		Select Option By Label
+		Select All Option
+ScreenShot:
+		WebUI.takesScreenshot("location\filename.png");  Defautl Screenshot
+
+
+Variable Type:
+		Public Variable
+		Global Variable  -- Open global variable dialog  GlobalVariable.VariableName
+		Private Variable -- By default public variable 
+
+
+Mouse Action
+		Double Click
+		Drag and Drop by Offset
+		Drag and Drop by Object
+		Focus
+		Mouse Hover
+		Context Click 
+
+		SendKeys Keys.chord
+
+
+Custom Keyword
+	Keyword
+
+		- Package
+				-User Defined Class
+						- Create  methodn with @Keyword annotation
+						
+
+
+

@@ -186,7 +186,7 @@ Exception:
 
             Java 7 : catch(IndexOutOfBounds | NullPointerException e) -- or operator can be used to catch two exception
                       try(Connection con=drivermanager) -- java will close the connection automaticlly autoclose interface is there.
-JAVA 8 Features:
+JAVA 8 Features :
         Functional Interface       --Done
         Lambda expressions         --Done
         DEFAULT AND STATIC METHOD inside Interface    - Done
@@ -216,7 +216,7 @@ JAVA 8 Features:
               Consumer   - One Parameter, No Return Type                        ;public abstract void accept(T t); andThen()
               Supplier   - No Parameter, Any Return Type                        ;public abstract T get();
 
-  	Default Method in Interface: 
+  Default Method in Interface: 
             If two interface has same default method and both are imlemented by same class, then class need to override the default method and inside the method need to call method name with iterface name.
             EG: return newInterface.super.getSometing();
 

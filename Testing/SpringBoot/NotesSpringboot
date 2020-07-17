@@ -1,0 +1,140 @@
+Spring Boot:
+
+Spring Template
+
+------Auto Configurator-----------------------Internal Library Dependency Injection-----------
+
+@Component: For each class add component 
+
+@Value  to initialize the value component
+			@Value("${value}")
+
+@Autowired:  Used for Automatically intialize the object defined with Component Keyword. You can use Autowire anywhere where you need some value/Object.
+			-> Spring can Autowire dependencies via Constructor, Setter, Field Injection
+
+Used for Exeternal Libraries:
+
+
+--- Manual Configurator--------------------------External Library Dependency Injection-------------
+@Configuration-> For third Party Library
+					Eg:
+							@Coniguration
+							public class abc{}
+
+
+@Bean  --> For Third Party Library can be intialize by Spring by creating a Configuration Class using Bean before Constructor
+					Eg:
+							@Coniguration
+							public class abc{
+
+								@Bean
+								pubic abc getAbC(){
+
+								}
+							}
+
+Bean: Component & Bean are spring Managed Beans. Bean is Java Object Managed by Spring
+
+LifeCycle:
+	
+	Set constructor & Field Value
+	setBean(BeanNameAware)
+	setBeanClassLoader
+	setBeanFactory
+	@PostConstruct
+	afterPropertiesSet
+	-----Bean Ready To Use--------
+	destory(DisposableBean)
+	@PreDestory
+
+
+
+Inversion of Control
+ To Create Loosly Coupled Application By Injecting the dependencies
+
+ 	1. Automatic Object Creation
+ 	2. Method Invocation
+ 	3. Life Cycle Management
+
+ 	Creates and Destorys Bean
+
+
+ @LazyBean: If some body want then only create the object otherwise no creation of the bean.
+ @Lazy --If at class level all will for all objects
+
+
+ If Two class have been Initialized with the same Type, it will throws error. It has to be Unique, if you want two bean then go with:
+ 			
+@Primary : It will use this bean when ever there is conflict.
+
+@ConditionalOnProperty(name="browser", havingValue="chrome")
+Set the Property in Property File
+
+You can pass property from the command line as well
+mvn clean test -Dbrowser=chrome
+It will take Precendence over whatever defined in the property file.
+
+@ConditionalOnMissingBean
+If value is not Present for that bean, this is the default Bean that will be initialized.
+Note: It should be the Defined at Last, otherwise it will not work.
+
+
+@ConditionalOnExpression("${car.speed}<70"): Conditional Bean can be given to two same bean having the same type.
+
+@Qualifier("accord") 
+_ Before the Bean and Before Autowire you need to pass.
+- Usally not used this way.
+
+
+
+Profile- Properties:
+
+Default Profile: application.properties
+
+spring.profiles.activa=qa
+	application-qa.properties
+
+
+spring.profiles.active=stg
+	application-stg.properties
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

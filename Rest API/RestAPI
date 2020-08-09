@@ -26,3 +26,114 @@ Response:
 			3. Documented supported formats
 
 			P@ssW0rd
+
+
+HTTP Cache Control Directive
+
+		Database -> ISP  -> Browser
+
+		Cache-Control (Directive)
+
+		Example:
+
+			private/public - directive, By default it is public 
+			Cache-Control: "directive-1, directive2"
+
+			Who Can Cache
+			how long
+			and what Condition
+
+			Public vs Private 
+
+			no-store directive is used for private
+
+			Example:
+			Cache-Control: "no-store, max-age=60"
+
+			ETag-> If the data has changed
+				Response 304 if data no changed
+				otherwise 200
+
+			max-age : value in seconds 
+
+			Cache-Control:"private, max-age=60"
+			intermediaries instructed to to cache
+
+
+Paging using Curser:
+Partial Data using query:
+
+Rest API Security:
+
+		Basic Authentication:
+					Header
+						Authorization- Encoded-Creds
+
+						SSL HTTPS not with HTTP
+						Anybody can read data in http
+						In Every request you need to pass authorization
+
+				Passport provide authentication middleware
+						not intrusive- keeps the code maintainable
+						support mulitple form of authentication
+						support for socail authentication
+
+		Token Base Authentication:
+				JSON Web Tokens
+						Header.Payload.Signature
+						BASE64 Base64   Hashing of Header Paylod +Secret
+
+				Header
+					Type "JWT"
+
+					Hashing Alogrithm: "HS256"
+
+				Payload:
+					Claims
+						Registered
+								iss
+								exp
+								nbf
+								...
+						Public
+							 	name
+							 	email
+							 	phone
+						Private
+								Decided By consumer
+
+				Secret:
+						Header_Payload+Secret
+
+		API Key and Secret:
+
+			Companies provide key and secret for access the info
+
+
+		API OAuth 2.0
+
+			Flexible Authorization Framework
+				Use Different typs of tokens
+				5 Methods(grants) for acquiring token
+				End user in control of their data
+				Application/Client needs aAPI key secret
+
+			Authorization Toekn
+			Access Token
+			Refresh Token
+
+
+
+
+API Management Platform
+	apigee
+	API Management IBM
+	Mashery 
+	MuleSoft
+
+
+
+
+
+
+

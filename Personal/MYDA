@@ -1,0 +1,61 @@
+
+User Time Sheet:
+
+User{
+	name:
+	startdate;
+}
+
+timesheet:{
+	name:
+	hours:
+	starttime:
+	end:time:
+	account_id:
+}
+
+account{
+	name:
+	date:
+	amt:
+	payment:
+	status:
+}
+
+
+
+1. Starting Amount of Every Month start_amt
+2. 
+
+
+
+
+
+
+Bank:
+Cash:
+Expenses:
+Income:
+
+
+
+
+{
+	date
+	month:
+	transaction_name: "Expense/Income"
+	type:"Debit/Credit/Bank/Cash"
+	amt: number
+}
+
+
+
+
+Select Month
+
+-----------------------------------
+Opening Balance      Income
+
+Expenses			 Closing Balance
+
+_------------------------

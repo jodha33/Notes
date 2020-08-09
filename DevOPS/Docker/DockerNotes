@@ -8,37 +8,11 @@ Docker
 	  Container: 
 	  			image of the OS Type: Docker Hub, Kitematics
 
-
-	 Commands:
-
-	 			Docker create
-	 			Docker pull
-	 			Docker push
-	 			Docker ps
-	 			Docker pa -a(Show all container)
-	 			Docker rm(container)/ rmi(image)
-	 			Docker stop
-
 	Linking docker Run: To Create link between two or more container to share/access resources
 		 		Docker run -name <LocalContainerName> --link <LocalContainerName>:ActualCotnainerName
 
-	Docker Compose:
-			For Defining and running mulit-container Docker application
-			With compose file, with single command you start all the services from the configuration.
-			Its an Yaml(.yml) file
-
-			docker-compose --help
-
-			docker-compose up  -- to start all the serivices
-	
-			docker-compose stop
-
-Interactive Shell
-	-it
 
 
-Volumes in Docker:
-docker container run -v E:\HostedVolume:/usr/data -it ubuntu
 --------------------------------------------------------------------------------------------
 
 Docker Commands:
@@ -116,11 +90,301 @@ Steps:
 		Eg:  docker create -p 5000:5000 <imageName>
 
 
+	Default Working Directory:
+		COPY ./ ./
+		WORKDIR /MyApp
 
+
+	DOCKER VOLUME
+		
+		Volumes in Docker:
+		docker container run -v E:\HostedVolume:/usr/data -it ubuntu
+
+		There are two ways to check change detection in docker one by below line or other by docker compose see line 123
+		docker run -it -p 3000:3000 -v /app/node_modules -v E:\HostedVolume:/app jodha33/reactapp
+			Command To run docker 
 
 
 --------------------------------------------------------------------------------------------------------
 
+Docker Compose
+	
+			version : '3'
+			services: 
+			  redis-server:
+			    image: 'redis'
+			  node-app:
+			    restart: always
+			    build: .
+			    ports: 
+			      - "4001:8081"
+
+
+			  Examples:
+				version: '3'
+				services:
+					web:
+						build:
+							context: .          // file direcotyr to build
+							dockerfile: Dockerfile.dev   // docker file use to build
+						ports:
+							- "3000:3000"
+						volumes:
+							- /app/node_modules    //
+							- .:/app
+						stdin_open: true   //To hold and show the container on command line
+
+
+	docker-compose.yml Format
+
+	docker-compose up
+
+	docker-compose up --build
+		- Rebuild a container
+
+	docker-compose up -d
+		- Run in Backgroud with -d
+
+	docker-compose down
+		- To make all container down
+
+	docker attach <containerid>
+		- To Run some commands in already running container
+
+	docker push jodha33/<imagename>
+		- To push the image to the Docker hub
+
+Docker Maintainance
+
+	Restart Polices: no
+					 always      : For web applicaitn
+					 on-failure  : for process that completes some operation
+					 unless-stopped :
+
+----------------------------------------------------------------------------------------------------
+
+
+Test:
+			Solution 1: Try with exec command in already running container with command 
+							docker exec -it <conatinerID> npm run test
+			Solution 2: Add a second container to run the test cases.
+
+
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+Build  ->  RUN/DEPLOY  -> TEST
+
+Travis CI:  CICD Tool, Travis.yml file 
+
+
+-------------------------------------------------------------------------------------------------------
+AWS
+
+Elastic Bean Stalk--- It works with container
+RDS -- Relational Database i.e. Postgres
+Elastic Cache-- In memory Cache Storage i.e. Redis
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+KUBERNETES
+
+System for Running multiple containers over multiple machines. System to Deploy containrized apps
+
+Nodes 
+	are individual machines(or vm's) that run containers
+
+Masters
+	are machine with a set of programs to manage nodes
+
+Kubernetes
+	didnt build our images - it got them from somewhere else
+
+Kubernetes
+	decides where it can run each container-each node can run a disimilar set of containers
+
+To deploy something we update the desired state of the master with a conf file
+
+The master works constantly to meed your desired state.
+
+
+
+
+Use:
+When you want to run many different images over many different machines.
+
+Archtecture
+
+Request-> Load Balancer  --> Node1(Container1, Container2),Node2(Container1,Container2)  --> Master(Control what nodes do)
+
+
+
+Minikube -- to setup on dev env
+
+On Productions 
+	- Managed Solution  eg. AWS, Google Cloud, Azure
+	- Do it yourself
+
+Kubectl -- For Managing containers in the node
+Minikube -- For Managing the VM itself
+
+Installation:
+	1. Download Kubectl and create env varaiable
+	2. Download and install Mini kube
+	3. Run cmd in admin
+			minikube start --vm-driver hyperv
+	4. Run 
+			kubectl cluster-info
+
+Notes:
+	
+	Kubernates expect all images to be already build - host on docker hub
+	One config file per object we want to create - config file
+	we have to manually set up all networking  - config file
+
+
+Config File --> (used to create object)---> ObjectType(StatefulSet | ReplicaController | Pod  | Service)
+
+Object Type in Kubernates:
+
+Service: Setup some kind of networking in Kubernates Cluster
+		  ClusterIP
+		  NodePort  --- Expose a container to the outside world. Only for Development purpose, not in production.
+		  LoadBalancer
+		  Ingress
+
+
+
+POD: To run a container/ We can run on or more container in the pod.
+		Usually container should be of similar type.
+		Tightly Coupled relationship, strong integration
+		Eg: Postgres  + Logger + Backup Manger
+		Usually It is only one container in a pod.
+
+Replica Controller:
+StatefulSet: 
+
+kind: Type of Object we want in Yaml
+
+apiVersion -- v1  ---- apps/v1
+
+
+How We Can Access application running inside pod in a VM on our machine using Service
+				Computer
+
+				KuberNets Node VM created by Minikube
+				|----------------------------------------------------------------|
+				|																 |
+				|KUBE-PROXY ---> Service Node Port   -> Port(POD- Multi Client)	 |
+				|																 |
+				|----------------------------------------------------------------|
+
+
+				Service Node Port will be multiplied by kubeproxy 
+
+Label Selector System: labels: 
+							component: web
+
+use can use as selector:
+					component: web
+
+Port:
+		port: Any other POD can connect at this port
+		targetPort: Inside the Pod to Open the Traffic
+		nodePort: To access it in browser in local machine. Exposed to the outside the world. It should be between 30000- 32767
+
+Command:
+	kubectl apply -f <filename>
+
+	kubectl get pods
+		-- List of pods running
+
+	kubectl get services
+		-- List of services running
+
+	minikube ip
+		-- To get the ip address of the VM ran by Mini Kube. Used for Accessing the application inside local machine by using the port.
+
+	kubectl delete -f <fileName>
+		-- Imeretive command to remove pod.
+
+Kubernetes Command Type:
+	1. Imperative :  Manually updataion to the object required.(Not a good solution)
+	2. Declarative : Kubernetes will take care of the work.
+
+
+Process
+
+Deployemt file -> Kube Api Server (Responsibilty)  -> {
+															Node1 : image 1,image2 image3
+															Node2
+															Node2
+													  }  
+
+Name and Kind should be same if you want to update an existing POD in Kubernetes.
+
+
+	kubectl describe <objectType> <clientName>
+		-- to display info about the object running in vm.
+
+Limitation of POD:
+You cannot update all the varibales inside in config, it allows only certain values to be updated. You can use deployement instead of POD.
+
+Better Version of POD------>------------------->--------
+
+* Deployment  -> Maintains a set of identical pods, ensuring that they have the correct config and that the right number exists.
+	- It monitors the state of each pod, updaing as necessary
+	- Good for dev
+	- Good for Production
+	- New configuration file is needed
+
+Pods vs Deployment
+POD is used in Development env.
+
+	kubectl get deployments
+		-- to display list of deployments status currently up and running.
+		
+
+Note:
+Services will help in intracting with the application with ports inside a local machine.
+	
+
+Updating Image in Kuberates:
+	
+	kubectl apply -f <filename>
+	- If there are no changes in deployment yaml file, kuubectl will be unchange and it will not accept new image.
+	
+	Solution:
+		1. Deleting pods manually  -- Silly Solutions
+		2. Tag build images with a real version and specify that version in the config file.
+		3. Imperative command to update the image version the deployement should use.
+
+			kubectl set image <objectType>/<objectName> <container_name>=<new image to use>
+
+			Example:
+
+			kubectl set image deployment/client-deployment client=jodha33/client:v5
+
+
+Local Docker Server Vs Virtual Machine Docker Server
+
+	eval $(minikube docker-env)
+		-- Temporarily configure to connect local docker client to vm docker server
+
+	You can use Docker or Kubectl for performing any operation all the images/containers inside vm created by docker
+	Example:
+			kubectl exec -it <pod> sh
+			docker exec -it <container> sh
+			docker system prune -a
+
+
+			
 
 
 
@@ -137,6 +401,42 @@ Steps:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
 	Selenium Grid:
 			Selenium Hub: 
 								1. Nodes
